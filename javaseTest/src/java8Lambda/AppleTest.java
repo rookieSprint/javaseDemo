@@ -29,6 +29,25 @@ public class AppleTest {
 		System.out.println(redApples1);
 		List<Apple> weight1 = filterApple(inventory, (Apple apple)-> apple.getWeiht()>150);
 		System.out.println(weight1);
+		/*ApplePredicate applePredicate = new ApplePredicate() {
+			@Override
+			public boolean condition(Apple apple) {
+				System.out.println("apple");
+				return true;
+			}
+		};*/
+		ApplePredicate applePredicate = (Apple apple) -> {System.out.println("apple"); return true;} ;
+		/**
+		 * (Apple apple) -> {System.out.println("apple"); return true;} ;相当于：
+			new ApplePredicate() {
+				@Override
+				public boolean condition(Apple apple) {
+					System.out.println("apple");
+					return true;
+				}
+			};
+		*/
+		applePredicate.condition(new Apple());
 		
 		/*try {
 			String string = processFile();
