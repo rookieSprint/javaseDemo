@@ -5,12 +5,30 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.DirectoryStream.Filter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class AppleTest {
 
 	public static void main(String[] args) {
+		
+		
+		
+	}
+	
+	public static <T> List<T> filter(List<T> list, Predicate<T> p){
+		List<T> results = new ArrayList<>();
+		for (T t : results) {
+			if (p.test(t)) {
+				results.add(t);
+			}
+		}
+		return results;
+	}
+	
+	public static void testAppleLambda(){
 		List<Apple> inventory = new ArrayList<>();
 		inventory=creatApples();
 		List<Apple> greenApples = filterGreenApple(inventory, "green");
@@ -49,27 +67,8 @@ public class AppleTest {
 		*/
 		applePredicate.condition(new Apple());
 		
-		/*try {
-			String string = processFile();
-			System.out.println(string);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		File directory = new File("");//设定为当前文件夹 
-		
-		    try {
-				System.out.println(directory.getCanonicalPath());//获取标准的路径 
-				System.out.println(directory.getAbsolutePath());//获取绝对路径 
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		    */
-		 /*   /javaseTest/src/java8Lambda/Apple.java   */
-		//File.getCanonicalPath()和File.getAbsolutePath()大约只是对于new File(".")和new File("..")两种路径有所区别。 
-		
-		
 	}
+	
 	public static List<Apple> creatApples(){
 		List<Apple> inventory = new ArrayList<>();
 		Apple apple = new Apple("green",150);
@@ -119,6 +118,28 @@ public class AppleTest {
 		return result;
 	}
 	
+	
+	public static void testFilePath(){
+		/*try {
+		String string = processFile();
+		System.out.println(string);
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	File directory = new File("");//设定为当前文件夹 
+	
+	    try {
+			System.out.println(directory.getCanonicalPath());//获取标准的路径 
+			System.out.println(directory.getAbsolutePath());//获取绝对路径 
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    */
+	 /*   /javaseTest/src/java8Lambda/Apple.java   */
+	//File.getCanonicalPath()和File.getAbsolutePath()大约只是对于new File(".")和new File("..")两种路径有所区别。 
+	
+	}
 	
 	public static String processFile() throws IOException{
 		//System.out.println(System.getProperty("Apple.java"));
