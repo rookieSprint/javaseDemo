@@ -6,6 +6,9 @@ public class Apple {
 	private int weight;
 	public Apple() {
 	}
+	Apple(int weight){
+		this.weight = weight;
+	}
 	public Apple(String color,int weight) {
 		this.color = color;
 		this.weight = weight;

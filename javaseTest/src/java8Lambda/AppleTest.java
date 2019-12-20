@@ -7,22 +7,82 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.DirectoryStream.Filter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class AppleTest {
 
 	public static void main(String[] args) {
 		
-		System.out.println("测试commit and push！！");
-		System.out.println("2测试commit and push！！");
-		System.out.println("之前的commit and push！！没有成功");
+		/**
+		 * 构造函数引用
+		 */
+		//Supplier<Apple> a1 = () -> new Apple();
+/*		Supplier<Apple> a1 = Apple::new;
+		a1.get();
+		List<String > strings = Arrays.asList("a","b","c","A","B");
+		//strings.sort((s1,s2) -> s1.compareToIgnoreCase(s2));
+		strings.sort(String::compareToIgnoreCase);
+		System.out.println(strings);*/
 		
+		List<Integer> weights = Arrays.asList(7,3,4,10);
+	//	List<Apple> listResult = map(weights, (Integer w) -> new Apple(w));
+		List<Apple> listResult = map(weights, Apple::new);
+		System.out.println(listResult);
 	}
 	
+	public static List<Apple> map(List<Integer> list, AppleFunction<Integer, Apple> f){
+		System.out.println("AppleFunction");
+		List<Apple> result = new ArrayList<>();
+		for (Integer e : list) {
+			result.add(f.apply(e));
+		}
+		return result;
+	}
+	
+	/*public static List<Apple> map(List<Integer> list, Function<Integer, Apple> f){
+		System.out.println("Function");
+		List<Apple> result = new ArrayList<>();
+		for (Integer e : list) {
+			result.add(f.apply(e));
+		}
+		return result;
+	}*/
+	
+	/*public static List<Apple> map(List<Integer> list, MyPredicate<Apple> f){
+		System.out.println("Function");
+		List<Apple> result = new ArrayList<>();
+		for (Integer e : list) {
+			result.add(f.test());
+		}
+		return result;
+	}*/
+	
+	public static void testPredicate(){
+		/**
+		 * Predicate<T> 接口定义了一个boolean test（T t）抽象方法； 
+		 * Consumer<T>   接口定义了一个 void accept(T t) 的抽象方法
+		 * Function<T,R>  接口定义了一个 R apply(T t) 的抽象方法
+		 */
+		List<String> list = new ArrayList<>();
+		list.add("hello");
+		list.add("world");
+		list.add("!");
+		//Predicate<String> nonEmptyStringPredicate = (String s) -> !s.isEmpty();
+		//List<String> nonEmpty = filter(list,(String s) -> !s.isEmpty());
+		List<String> nonEmpty = filter(list, s -> !s.isEmpty());
+		//List<String> nonEmpty = filter(list, String::isEmpty);
+		System.out.println(nonEmpty);
+	}
+	    
 	public static <T> List<T> filter(List<T> list, Predicate<T> p){
 		List<T> results = new ArrayList<>();
-		for (T t : results) {
+		for (T t : list) {
+			System.out.println(t);
 			if (p.test(t)) {
 				results.add(t);
 			}
@@ -155,3 +215,19 @@ public class AppleTest {
 	
 
 }
+
+
+interface MyPredicate<T>{
+	T test();
+}
+
+
+
+
+
+
+
+
+
+
+
