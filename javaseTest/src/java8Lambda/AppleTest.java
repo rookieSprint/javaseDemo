@@ -16,6 +16,7 @@ public class AppleTest {
 		
 		System.out.println("测试commit and push！！");
 		System.out.println("2测试commit and push！！");
+		System.out.println("之前的commit and push！！没有成功");
 		
 	}
 	
